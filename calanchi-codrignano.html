@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trekking sui Calanchi di Codrignano · 19 Aprile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,600;1,9..144,800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --clay:    #C4714A;
+      --earth:   #8B5A3C;
+      --ochre:   #D4A843;
+      --sage:    #7A8C6E;
+      --cream:   #F5EFE0;
+      --dark:    #2A1F14;
+      --linen:   #EDE6D3;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── GRAIN OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none;
+      opacity: .03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      max-height: 860px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 2rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(42,31,20,.15) 0%, rgba(42,31,20,.7) 70%, rgba(42,31,20,.92) 100%),
+        /* Calanchi gradient landscape placeholder */
+        radial-gradient(ellipse 120% 60% at 50% 30%, #C8956A 0%, #A0623A 25%, #7A4828 45%, #4A3020 65%, #2E2015 100%);
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Calanchi sculpted hills illusion */
+    .hero-landscape {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 45%;
+      pointer-events: none;
+    }
+
+    .hero-landscape svg {
+      width: 100%; height: 100%;
+      position: absolute; bottom: 0;
+    }
+
+    .hero-badge {
+      position: absolute; top: 2rem; right: 2rem;
+      background: var(--ochre);
+      color: var(--dark);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: .7rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .5rem 1rem;
+      border-radius: 2px;
+      animation: fadeDown .8s .3s both;
+    }
+
+    .hero-organizers {
+      position: absolute; top: 2rem; left: 2rem;
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(245,239,224,.7);
+      animation: fadeDown .8s .2s both;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 1rem;
+      animation: fadeUp .9s .4s both;
+    }
+
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 9vw, 7rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--cream);
+      animation: fadeUp .9s .5s both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--ochre);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(245,239,224,.75);
+      margin-top: 1rem;
+      font-weight: 400;
+      max-width: 480px;
+      line-height: 1.6;
+      animation: fadeUp .9s .6s both;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp .9s .7s both;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .85rem 2.2rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all .25s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--ochre);
+      color: var(--dark);
+    }
+    .btn-primary:hover { background: #c4952e; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid rgba(245,239,224,.5);
+      color: var(--cream);
+    }
+    .btn-outline:hover { border-color: var(--cream); background: rgba(245,239,224,.08); }
+
+    /* ─── SCROLL ARROW ─── */
+    .scroll-hint {
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      color: rgba(245,239,224,.5);
+      font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      animation: bounce 2s 2s infinite, fadeUp .9s .9s both;
+    }
+    .scroll-hint svg { width: 18px; opacity: .6; }
+
+    /* ─── STRIP ─── */
+    .strip {
+      background: var(--clay);
+      color: var(--cream);
+      padding: 1.1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      font-size: .8rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .strip span { display: flex; align-items: center; gap: .5rem; }
+    .strip svg { width: 15px; opacity: .75; }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 6rem 2rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-tag {
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: .8rem;
+      font-weight: 800;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--dark);
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #5a4535;
+      margin-bottom: 1.2rem;
+      font-weight: 400;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image .img-frame {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .about-image .img-frame::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #C8956A 0%, #A05A30 30%, #7A3820 55%, #5A2C18 75%, #3A2010 100%);
+    }
+
+    /* Placeholder calanchi texture */
+    .about-image .img-frame::after {
+      content: 'Calanchi di Codrignano';
+      position: absolute; inset: 0;
+      display: flex; align-items: flex-end; padding: 1.5rem;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: .9rem;
+      color: rgba(245,239,224,.7);
+      background: linear-gradient(to top, rgba(42,31,20,.6) 0%, transparent 50%);
+    }
+
+    .about-image .img-decoration {
+      position: absolute;
+      bottom: -1.5rem; right: -1.5rem;
+      width: 60%;
+      aspect-ratio: 1;
+      border: 2px solid var(--ochre);
+      border-radius: 4px;
+      z-index: -1;
+    }
+
+
+    /* ─── PROGRAMMA ─── */
+    .programma-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 4rem;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: .4rem; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--clay) 60%, transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all .6s;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .timeline-dot {
+      position: absolute; left: -2.4rem; top: .35rem;
+      width: 10px; height: 10px;
+      background: var(--clay);
+      border-radius: 50%;
+      border: 2px solid var(--linen);
+      box-shadow: 0 0 0 2px var(--clay);
+    }
+
+    .timeline-time {
+      font-size: .7rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+
+    .timeline-event {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: .3rem;
+    }
+
+    .timeline-note {
+      font-size: .9rem;
+      color: #7a5a45;
+      line-height: 1.5;
+    }
+
+    /* ─── MENU ─── */
+    .menu-card {
+      background: var(--dark);
+      color: var(--cream);
+      border-radius: 6px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-card::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: var(--clay);
+      opacity: .15;
+      border-radius: 50%;
+    }
+
+    .menu-card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--ochre);
+      margin-bottom: 2rem;
+    }
+
+    .menu-list {
+      list-style: none;
+    }
+
+    .menu-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .9rem 0;
+      border-bottom: 1px solid rgba(245,239,224,.08);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .menu-list li::before {
+      content: '—';
+      color: var(--clay);
+      opacity: .6;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .menu-list li:last-child { border-bottom: none; }
+
+    .menu-list .dish-icon {
+      font-size: 1.3rem;
+      width: 2rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .menu-price {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(245,239,224,.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price-label { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; opacity: .6; }
+    .price-value {
+      font-family: 'Fraunces', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--ochre);
+    }
+
+    .menu-note {
+      margin-top: 1rem;
+      font-size: .8rem;
+      color: rgba(245,239,224,.5);
+      line-height: 1.6;
+    }
+
+    /* ─── INFO BOXES ─── */
+    .info-boxes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .info-box {
+      background: var(--cream);
+      border-radius: 4px;
+      padding: 2rem;
+      border-top: 3px solid var(--clay);
+    }
+
+    .info-box-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--clay);
+      opacity: .35;
+      line-height: 1;
+      margin-bottom: .75rem;
+    }
+
+    .info-box-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: .5rem;
+    }
+
+    .info-box-text {
+      font-size: .9rem;
+      color: #7a5a45;
+      line-height: 1.6;
+    }
+
+    /* ─── PRENOTAZIONE ─── */
+    .booking-section {
+      background: var(--dark);
+      color: var(--cream);
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .booking-intro .section-title { color: var(--cream); }
+    .booking-intro .section-tag { color: var(--ochre); }
+
+    .booking-intro p {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(245,239,224,.65);
+      font-weight: 400;
+    }
+
+    .availability {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .availability-bar {
+      flex: 1;
+      height: 6px;
+      background: rgba(245,239,224,.15);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .availability-fill {
+      height: 100%;
+      width: 32.5%;
+      background: var(--ochre);
+      border-radius: 3px;
+      animation: fillBar 1.5s 1s both;
+    }
+
+    .availability-text {
+      font-size: .8rem;
+      color: rgba(245,239,224,.5);
+      white-space: nowrap;
+      letter-spacing: .05em;
+    }
+
+    /* Booking Form */
+    .booking-form {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(245,239,224,.1);
+      border-radius: 6px;
+      padding: 2.5rem;
+    }
+
+    .form-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--ochre);
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(245,239,224,.5);
+      margin-bottom: .5rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(245,239,224,.15);
+      border-radius: 3px;
+      padding: .9rem 1rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: .95rem;
+      color: var(--cream);
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--ochre);
+    }
+
+    .form-group select option { background: #2A1F14; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+    }
+
+    .toggle-option {
+      position: relative;
+    }
+
+    .toggle-option input[type="radio"] {
+      position: absolute; opacity: 0; pointer-events: none;
+    }
+
+    .toggle-option label {
+      display: block;
+      text-align: center;
+      padding: .85rem;
+      border: 1px solid rgba(245,239,224,.15);
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: .8rem;
+      letter-spacing: .05em;
+      text-transform: none;
+      color: rgba(245,239,224,.6);
+      transition: all .2s;
+    }
+
+    .toggle-option input:checked + label {
+      background: var(--clay);
+      border-color: var(--clay);
+      color: var(--cream);
+    }
+
+    .toggle-option label:hover {
+      border-color: rgba(245,239,224,.35);
+      color: rgba(245,239,224,.9);
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--ochre);
+      color: var(--dark);
+      padding: 1rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all .25s;
+      margin-top: .5rem;
+    }
+
+    .form-submit:hover { background: #c4952e; transform: translateY(-2px); }
+
+    .form-whatsapp {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: .82rem;
+      color: rgba(245,239,224,.35);
+    }
+
+    .form-whatsapp a {
+      color: #75c780;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .form-whatsapp a:hover { text-decoration: underline; }
+
+    /* ─── ORGANIZERS ─── */
+    .organizers {
+      background: var(--cream);
+      padding: 5rem 2rem;
+      border-top: 1px solid rgba(196,113,74,.15);
+    }
+
+    .org-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .org-logos {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .org-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .7rem;
+    }
+
+    .org-icon {
+      width: 64px; height: 64px;
+      background: var(--clay);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Nunito', sans-serif;
+      font-size: .75rem;
+      font-weight: 900;
+      letter-spacing: .05em;
+      color: var(--cream);
+    }
+
+    .org-name {
+      font-family: 'Fraunces', serif;
+      font-size: .95rem;
+      font-style: italic;
+      color: var(--dark);
+      text-align: center;
+      max-width: 130px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      color: rgba(245,239,224,.4);
+      text-align: center;
+      padding: 2rem;
+      font-size: .8rem;
+      letter-spacing: .05em;
+    }
+
+
+    /* ─── REVEAL ON SCROLL ─── */
+    .reveal.ready {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    @keyframes fillBar {
+      from { width: 0; }
+    }
+
+
+    /* ─── CAROUSEL ─── */
+    .carousel { position: relative; }
+
+    .carousel-track-wrap {
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      aspect-ratio: 4/5;
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .carousel-slide::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(42,20,10,.55) 0%, transparent 50%);
+    }
+
+    .c1::before { content:''; position:absolute;inset:0; background: linear-gradient(135deg, #C8956A 0%, #A05A30 30%, #7A3820 55%, #5A2C18 75%, #3A2010 100%); }
+    .c2::before { content:''; position:absolute;inset:0; background: linear-gradient(135deg, #7A8C6E 0%, #556650 40%, #384535 100%); }
+    .c3::before { content:''; position:absolute;inset:0; background: linear-gradient(135deg, #C4A870 0%, #A08045 60%, #705830 100%); }
+    .c4::before { content:''; position:absolute;inset:0; background: linear-gradient(135deg, #D4B080 0%, #B08050 50%, #8A5830 100%); }
+    .c5::before { content:''; position:absolute;inset:0; background: linear-gradient(135deg, #8A7060 0%, #6A5040 50%, #4A3020 100%); }
+
+    .carousel-label {
+      position: absolute; bottom: 1rem; left: 1.2rem;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: .9rem;
+      color: rgba(245,239,224,.85);
+      z-index: 2;
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .carousel-btn {
+      background: var(--clay);
+      color: var(--cream);
+      border: none;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+
+    .carousel-btn:hover { background: var(--earth); transform: scale(1.08); }
+
+    .carousel-dots {
+      display: flex; gap: .5rem;
+    }
+
+    .carousel-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(196,113,74,.3);
+      transition: background .25s, transform .25s;
+      cursor: pointer;
+    }
+
+    .carousel-dot.active {
+      background: var(--clay);
+      transform: scale(1.3);
+    }
+
+
+    /* ─── HERO LAYOUT ─── */
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-form-box {
+      background: rgba(20, 12, 6, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(245,239,224,.12);
+      border-radius: 8px;
+      padding: 2rem;
+      animation: fadeUp .9s .6s both;
+    }
+
+    .hero-form-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ochre);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-form-box .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .hero-form-box .form-group label {
+      display: block;
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(245,239,224,.45);
+      margin-bottom: .4rem;
+    }
+
+    .hero-form-box .form-group input,
+    .hero-form-box .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(245,239,224,.15);
+      border-radius: 3px;
+      padding: .75rem .9rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: .9rem;
+      color: var(--cream);
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .hero-form-box .form-group input::placeholder { color: rgba(245,239,224,.3); }
+    .hero-form-box .form-group input:focus,
+    .hero-form-box .form-group select:focus { border-color: var(--ochre); }
+    .hero-form-box .form-group select option { background: #1a0f08; }
+
+    .hero-form-box .form-toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .5rem;
+    }
+
+    .hero-form-box .toggle-option label {
+      display: block;
+      text-align: center;
+      padding: .65rem .5rem;
+      border: 1px solid rgba(245,239,224,.15);
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: .78rem;
+      color: rgba(245,239,224,.55);
+      transition: all .2s;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .hero-form-box .toggle-option input:checked + label {
+      background: var(--clay);
+      border-color: var(--clay);
+      color: var(--cream);
+    }
+
+    .hero-form-submit {
+      width: 100%;
+      background: var(--ochre);
+      color: var(--dark);
+      padding: .85rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: .82rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all .25s;
+      margin-top: .75rem;
+    }
+
+    .hero-form-submit:hover { background: #c4952e; transform: translateY(-2px); }
+
+    .hero-form-scroll-hint {
+      text-align: center;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .35rem;
+      color: rgba(245,239,224,.35);
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color .2s;
+    }
+    .hero-form-scroll-hint:hover { color: rgba(245,239,224,.6); }
+    .hero-form-scroll-hint svg { width: 16px; animation: bounce 2s 2s infinite; }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 2.5rem;
+      }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .about-grid,
+      .programma-grid,
+      .booking-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+      .info-boxes { grid-template-columns: 1fr; }
+
+      .strip { gap: 1.5rem; font-size: .72rem; }
+
+      .about-image .img-decoration { display: none; }
+
+      /* Hero mobile: spazio per badge/organizers in alto, respiro sotto il form */
+      .hero {
+        padding: 5.5rem 1.25rem 5rem;
+        justify-content: flex-start;
+        min-height: 100svh;
+        max-height: none;
+      }
+
+      .hero-inner {
+        margin-top: 2rem;
+        padding-bottom: 4rem;
+      }
+
+      .hero-form-box {
+        margin-bottom: 1rem;
+      }
+
+      /* Titolo un po' più piccolo su mobile per non schiacciare */
+      .hero-title {
+        font-size: clamp(2.6rem, 11vw, 4rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ─── SUCCESS STATE ─── */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .form-success.active { display: block; }
+    .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .success-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      color: var(--ochre);
+      margin-bottom: .5rem;
+    }
+    .success-text { color: rgba(245,239,224,.6); font-size: .9rem; line-height: 1.6; }
+    .booking-form.submitted .form-fields { display: none; }
+    .booking-form.submitted .form-success { display: block; }
+
+    /* ─── STICKY MOBILE CTA ─── */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom));
+      background: linear-gradient(to top, var(--dark) 60%, transparent);
+      transform: translateY(100%);
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+      pointer-events: none;
+    }
+
+    .sticky-cta.visible {
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .sticky-cta a {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--ochre);
+      color: var(--dark);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: .9rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.4);
+      transition: background .2s;
+    }
+
+    .sticky-cta a:active { background: #c4952e; }
+
+    @media (min-width: 768px) {
+      .sticky-cta { display: none !important; }
+    }
+
+    @media (max-width: 767px) {
+      .sticky-cta { display: block; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- SVG Calanchi silhouette -->
+  <div class="hero-landscape">
+    <svg viewBox="0 0 1400 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,300 L0,180 C60,160 90,120 140,100 C180,84 200,115 240,110 C275,106 290,75 330,60 C370,45 395,80 430,85 C465,90 480,65 520,50 C555,36 575,70 610,80 C640,88 660,55 700,42 C735,30 755,62 790,70 C820,77 840,50 880,38 C915,27 940,60 975,72 C1005,83 1025,55 1065,45 C1100,36 1125,65 1160,78 C1195,90 1220,60 1260,55 C1300,50 1340,80 1400,90 L1400,300 Z" fill="rgba(42,20,10,0.55)"/>
+      <path d="M0,300 L0,220 C50,210 80,185 120,175 C160,165 190,190 230,188 C265,186 285,160 320,150 C355,140 380,165 415,170 C450,175 470,152 510,142 C548,133 570,158 606,165 C638,171 660,145 698,135 C733,126 755,150 792,158 C823,165 845,140 882,130 C918,121 942,148 978,158 C1010,167 1032,140 1070,132 C1106,124 1130,150 1166,160 C1200,170 1225,145 1265,140 C1305,135 1345,158 1400,165 L1400,300 Z" fill="rgba(42,20,10,0.75)"/>
+      <path d="M0,300 L0,260 C80,250 140,235 200,240 C260,245 300,258 360,252 C420,246 460,232 520,238 C580,244 620,255 680,250 C740,245 780,230 840,238 C900,246 940,258 1000,252 C1060,246 1100,232 1160,240 C1220,248 1260,258 1320,252 C1360,248 1385,244 1400,242 L1400,300 Z" fill="rgba(30,15,8,0.88)"/>
+    </svg>
+  </div>
+
+  <div class="hero-organizers">Festa del Garganello · Circolo Arci Codrignano</div>
+  <div class="hero-badge">19 Aprile 2025</div>
+
+  <div class="hero-inner">
+    <!-- Left: text -->
+    <div class="hero-content">
+      <span class="hero-tag">19 Aprile · Codrignano (BO)</span>
+      <h1 class="hero-title">Sui <em>Calanchi</em><br>di Codrignano</h1>
+      <p class="hero-subtitle">Cammina tra le creste d'argilla dell'Appennino bolognese. Poi siediti — tortelli, fagioli, ciambella e un bicchiere di vino ti aspettano.</p>
+      <div class="hero-cta">
+        <a href="#programma" class="btn btn-outline">Scopri il programma</a>
+      </div>
+    </div>
+
+    <!-- Right: mini form -->
+    <div class="hero-form-box" id="heroFormBox">
+      <div class="hero-form-fields">
+        <div class="hero-form-title">Prenota — rimasti ~27 posti</div>
+
+        <div class="form-group">
+          <label>Nome e cognome</label>
+          <input type="text" id="hfName" placeholder="Mario Rossi" autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label>Telefono</label>
+          <input type="tel" id="hfPhone" placeholder="+39 333 123 4567" autocomplete="tel">
+        </div>
+
+        <div class="form-group">
+          <label>Persone</label>
+          <select id="hfPersons">
+            <option value="1">1 persona</option>
+            <option value="2">2 persone</option>
+            <option value="3">3 persone</option>
+            <option value="4">4 persone</option>
+            <option value="5+">5 o più</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Partecipazione</label>
+          <div class="form-toggle">
+            <div class="toggle-option">
+              <input type="radio" name="htipo" id="ht1" value="trekking-pranzo" checked>
+              <label for="ht1">Trekking + Pranzo</label>
+            </div>
+            <div class="toggle-option">
+              <input type="radio" name="htipo" id="ht2" value="solo-pranzo">
+              <label for="ht2">Solo Pranzo</label>
+            </div>
+          </div>
+        </div>
+
+        <button class="hero-form-submit" onclick="handleHeroSubmit()">Prenota ora &rarr;</button>
+
+        <div class="hero-form-scroll-hint" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          Scorri per saperne di più
+        </div>
+      </div>
+
+      <div class="hero-form-success" style="display:none; text-align:center; padding:2rem 0;">
+        <div style="font-size:2rem; margin-bottom:.75rem;">&#10003;</div>
+        <div style="font-family:'Fraunces',serif; font-size:1.2rem; color:var(--ochre); margin-bottom:.5rem;">Prenotazione ricevuta!</div>
+        <div style="font-size:.85rem; color:rgba(245,239,224,.6); line-height:1.6;">Ti chiamiamo noi per confermare. A presto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STRIP ─── -->
+<div class="strip">
+  <span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    Sabato 19 Aprile
+  </span>
+  <span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    Circolo Arci · Codrignano
+  </span>
+  <span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    Max 40 partecipanti
+  </span>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section id="about" class="reveal">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-tag">Codrignano · Appennino bolognese</div>
+        <h2 class="section-title">Argilla, silenzio<br>e cielo d'aprile</h2>
+
+        <!-- Carousel -->
+        <div class="carousel" style="margin-top:2rem;">
+          <div class="carousel-track-wrap">
+            <div class="carousel-track" id="carouselTrack">
+              <div class="carousel-slide c1"><span class="carousel-label">I calanchi visti dall'alto</span></div>
+              <div class="carousel-slide c2"><span class="carousel-label">Sentieri tra i boschi</span></div>
+              <div class="carousel-slide c3"><span class="carousel-label">Panorama dell'Appennino</span></div>
+              <div class="carousel-slide c4"><span class="carousel-label">Argilla e primavera</span></div>
+              <div class="carousel-slide c5"><span class="carousel-label">Il circolo Arci</span></div>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-btn" onclick="moveCarousel(-1)" aria-label="Precedente">&#8592;</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <button class="carousel-btn" onclick="moveCarousel(1)" aria-label="Successivo">&#8594;</button>
+          </div>
+          <p style="margin-top:.75rem; font-size:.75rem; color:#9a7a5a; font-style:italic;">Immagini illustrative — foto reali del percorso prossimamente.</p>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p>L'acqua ha impiegato millenni a scavare l'argilla di queste colline. Il risultato sono guglie, canaloni e creste biancastre che tagliano il verde — un paesaggio che non assomiglia a nessun altro posto nei dintorni, eppure ci vuole meno di un'ora di macchina.</p>
+        <p>Ad aprile il contrasto è al massimo: l'argilla bianco-grigia contro il verde dei prati appena nati. La luce del mattino radente rende ogni cresta più netta, ogni canalone più profondo.</p>
+        <p>Il percorso fa <strong>7,5 km</strong> con <strong>282 m</strong> di dislivello, circa 2h30 di cammino. Sentiero stretto in alcuni punti, terreno argilloso quando piove. Servono scarpe da trekking e una borraccia. Non è una passeggiata, ma non serve nemmeno essere alpinisti.</p>
+
+        <!-- Trek stats -->
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2.5rem;">
+          <div style="text-align:center; padding:1.5rem .5rem; background:var(--linen); border-radius:4px; border-top:3px solid var(--clay);">
+            <div style="font-family:'Fraunces',serif; font-size:2.2rem; font-weight:900; color:var(--clay); line-height:1;">7,5</div>
+            <div style="font-size:.7rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#9a7a5a; margin-top:.4rem;">km</div>
+          </div>
+          <div style="text-align:center; padding:1.5rem .5rem; background:var(--linen); border-radius:4px; border-top:3px solid var(--clay);">
+            <div style="font-family:'Fraunces',serif; font-size:2.2rem; font-weight:900; color:var(--clay); line-height:1;">282</div>
+            <div style="font-size:.7rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#9a7a5a; margin-top:.4rem;">m dislivello</div>
+          </div>
+          <div style="text-align:center; padding:1.5rem .5rem; background:var(--linen); border-radius:4px; border-top:3px solid var(--clay);">
+            <div style="font-family:'Fraunces',serif; font-size:2.2rem; font-weight:900; color:var(--clay); line-height:1;">~3h</div>
+            <div style="font-size:.7rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#9a7a5a; margin-top:.4rem;">durata</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── PROGRAMMA + MENU ─── -->
+<section id="programma" class="reveal" style="background: var(--linen);">
+  <div class="container">
+    <div class="section-tag">La giornata</div>
+    <h2 class="section-title">Programma</h2>
+
+    <div class="programma-grid">
+
+      <!-- Timeline -->
+      <div>
+        <div class="timeline" style="margin-top: 3rem;">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">Mattina</div>
+            <div class="timeline-event">Ritrovo al Circolo Arci</div>
+            <div class="timeline-note">Si parte dal Circolo Arci di Codrignano. Due parole sul percorso, poi si cammina.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">Partenza</div>
+            <div class="timeline-event">Trekking sui calanchi</div>
+            <div class="timeline-note">7,5 km tra guglie d'argilla, boschi e panorami appenninici. Ritmo tranquillo, soste incluse.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">Mezzogiorno</div>
+            <div class="timeline-event">Rientro al circolo</div>
+            <div class="timeline-note">Si torna al circolo. C'è il tempo per riprendere fiato prima di sedersi.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">Pranzo</div>
+            <div class="timeline-event">Il pranzo di primavera</div>
+            <div class="timeline-note">Tortelli, stufato di fagioli, ciambella, vino e digestivo. Cucina di casa, fatta come si deve. Chi vuole può venire solo a pranzo — ma i posti ai camminatori vanno prima.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu -->
+      <div class="menu-card">
+        <div class="menu-card-title">Cosa si mangia</div>
+        <ul class="menu-list">
+          <li>Tortelli burro e salvia</li>
+          <li>Stufato di fagioli</li>
+          <li>Ciambella della tradizione</li>
+          <li>Acqua, vino e caffè</li>
+          <li>Digestivo</li>
+        </ul>
+        <div class="menu-price">
+          <div>
+            <div class="price-label">Quota di partecipazione</div>
+            <div class="menu-note" style="font-size:.75rem; color:rgba(245,239,224,.4)">trekking + pranzo completo</div>
+          </div>
+          <div class="price-value">€ 35</div>
+        </div>
+        <div class="menu-note">Nel prezzo è inclusa la tessera Arci se non ce l'hai già. Vuoi venire solo a pranzo? Scrivici — qualche posto potrebbe esserci, ma la priorità è per chi cammina.</div>
+      </div>
+
+    </div>
+
+    <!-- Info boxes -->
+    <div class="info-boxes">
+      <div class="info-box">
+        <div class="info-box-num">01</div>
+        <div class="info-box-title">Il percorso</div>
+        <div class="info-box-text">7,5 km · 282 m di dislivello · circa 2h30. Sentiero stretto in alcuni punti. Scarpe da trekking indispensabili.</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-num">02</div>
+        <div class="info-box-title">Solo 40 posti</div>
+        <div class="info-box-text">Non c'è modo di aggiungerne altri. Prenota adesso — quando sono finiti, sono finiti.</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-num">03</div>
+        <div class="info-box-title">Solo pranzo?</div>
+        <div class="info-box-text">Si può fare, su disponibilità. I posti a tavola vanno prima a chi cammina. Fatti sentire.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── PRENOTAZIONE ─── -->
+<section id="prenota" class="booking-section">
+  <div class="container">
+    <div class="booking-grid">
+
+      <div class="booking-intro">
+        <div class="section-tag">40 posti · 19 aprile</div>
+        <h2 class="section-title">Prenota<br>il tuo posto</h2>
+        <p>Lascia nome e numero. Ti richiamiamo noi per confermare il posto e dirti come saldare i 35€. Semplice.</p>
+        <div class="availability">
+          <div class="availability-bar">
+            <div class="availability-fill"></div>
+          </div>
+          <div class="availability-text">~27 posti ancora disponibili</div>
+        </div>
+      </div>
+
+      <div class="booking-form" id="bookingForm">
+        <div class="form-fields">
+          <div class="form-title">Prenota in 30 secondi</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome</label>
+              <input type="text" id="fname" placeholder="Mario" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label>Cognome</label>
+              <input type="text" id="lname" placeholder="Rossi" autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Telefono (per ricontattarti)</label>
+            <input type="tel" id="phone" placeholder="+39 333 123 4567" autocomplete="tel">
+          </div>
+
+          <div class="form-group">
+            <label>Quante persone?</label>
+            <select id="persons">
+              <option value="1">1 persona</option>
+              <option value="2">2 persone</option>
+              <option value="3">3 persone</option>
+              <option value="4">4 persone</option>
+              <option value="5+">5 o più persone</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Tipo di partecipazione</label>
+            <div class="form-toggle">
+              <div class="toggle-option">
+                <input type="radio" name="tipo" id="t1" value="trekking-pranzo" checked>
+                <label for="t1">Trekking + Pranzo</label>
+              </div>
+              <div class="toggle-option">
+                <input type="radio" name="tipo" id="t2" value="solo-pranzo">
+                <label for="t2">Solo Pranzo</label>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn form-submit" onclick="handleSubmit()">
+            Prenota ora &rarr;
+          </button>
+
+          <div class="form-whatsapp">
+            Preferisci scrivere?<br>
+            <a href="https://wa.me/39XXXXXXXXXX" target="_blank">+39 XXX XXX XXXX</a>
+          </div>
+        </div>
+
+        <div class="form-success">
+          <div class="success-icon"></div>
+          <div class="success-title">Prenotazione ricevuta!</div>
+          <div class="success-text">Ti chiamiamo noi per confermare. A presto sui calanchi.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── ORGANIZERS ─── -->
+<section class="organizers">
+  <div class="org-inner">
+    <div class="section-tag" style="text-align:center;">Organizzato da</div>
+    <h2 class="section-title" style="text-align:center; font-size:1.8rem;">Chi c'è dietro</h2>
+    <div class="org-logos">
+      <div class="org-badge">
+        <div class="org-icon">FG</div>
+        <div class="org-name">Festa del Garganello</div>
+      </div>
+      <div class="org-badge">
+        <div class="org-icon">CA</div>
+        <div class="org-name">Circolo Arci Codrignano</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div>Codrignano · Aprile 2025 · Organizzato dalla Festa del Garganello e dal Circolo Arci di Codrignano</div>
+  <div style="margin-top:.5rem;">Per info: <a href="https://wa.me/39XXXXXXXXXX" style="color:rgba(245,239,224,.5)">WhatsApp</a></div>
+</footer>
+
+<script>
+
+
+
+  // Sticky mobile CTA
+  const stickyCta = document.getElementById('stickyCta');
+  const heroEl = document.querySelector('.hero');
+  const prenotaEl = document.getElementById('prenota');
+
+  function updateStickyCta() {
+    const heroBottom = heroEl.getBoundingClientRect().bottom;
+    const prenotaTop = prenotaEl.getBoundingClientRect().top;
+    const windowH = window.innerHeight;
+
+    const pastHero = heroBottom < 0;
+    const formVisible = prenotaTop < windowH * 0.85;
+
+    if (pastHero && !formVisible) {
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', updateStickyCta, { passive: true });
+  updateStickyCta();
+
+  // Section reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  revealEls.forEach(el => {
+    el.classList.add('ready');
+    revealObserver.observe(el);
+  });
+
+  // Carousel
+  let current = 0;
+  const slides = document.querySelectorAll('.carousel-slide');
+  const track = document.getElementById('carouselTrack');
+  const dotsContainer = document.getElementById('carouselDots');
+  let autoTimer;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i+1));
+    dot.onclick = () => goTo(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function moveCarousel(dir) {
+    clearInterval(autoTimer);
+    goTo(current + dir);
+    startAuto();
+  }
+
+  function startAuto() {
+    autoTimer = setInterval(() => goTo(current + 1), 3500);
+  }
+
+  startAuto();
+
+  // Timeline scroll animation
+  const items = document.querySelectorAll('.timeline-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 150);
+      }
+    });
+  }, { threshold: 0.2 });
+  items.forEach(item => observer.observe(item));
+
+  // Form submit
+
+  function handleHeroSubmit() {
+    const name = document.getElementById('hfName').value.trim();
+    const phone = document.getElementById('hfPhone').value.trim();
+    if (!name || !phone) {
+      alert('Per favore compila nome e telefono per procedere.');
+      return;
+    }
+    const box = document.getElementById('heroFormBox');
+    box.querySelector('.hero-form-fields').style.display = 'none';
+    box.querySelector('.hero-form-success').style.display = 'block';
+  }
+
+  function handleSubmit() {
+    const fname = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if (!fname || !phone) {
+      alert('Per favore compila nome e telefono per procedere.');
+      return;
+    }
+
+    const form = document.getElementById('bookingForm');
+    form.classList.add('submitted');
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+
+<!-- ─── STICKY MOBILE CTA ─── -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#prenota">Prenota ora &rarr;</a>
+</div>
+
+</body>
+</html>
